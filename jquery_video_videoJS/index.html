@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Jquery</title>
+    <link href="css/video-js.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/video.jquery.js"></script>
+</head>
+
+<body>
+    <div id="player"></div>
+
+    <script>
+        $("#player").video_jquery({
+                    control: "default", // default, youtube, vimeo
+                    width: 800,
+                    heigth: 600,
+                    path: "http://video-js.zencoder.com/oceans-clip.mp4", // caminho default(local), videoId(youtube/vimeo)
+                    autoplay: false,
+                    skin: true
+                });
+
+        /*$("#player").video_jquery({
+             control: "youtube", // default, youtube, vimeo
+             width: 800,
+             heigth: 600,
+             path: "dsUxvFNWb6w", // caminho default(local), videoId(youtube/vimeo)
+             autoplay:false,
+             skin:true
+         });*/
+
+       /* $("#player").video_jquery({
+            control: "vimeo", // default, youtube, vimeo
+            width: 638,
+            heigth: 348,
+            path: "76979871", // caminho default(local), videoId(youtube/vimeo)
+            autoplay: false
+                //skin:true --- Não funciona no vimeo
+        });*/
+
+        $("#player").on("start", function (e) {
+            console.log("start");
+        });
+
+        $("#player").on("paused", function (e) {
+            console.log("paused");
+        });
+
+        $("#player").on("timeProgress", function (e) {
+            console.log(e.timeCurrent);
+            console.log(e.timeTotal);
+        });
+
+        $("#player").on("timeFinish", function (e) {
+
+            console.log("timeFinish");
+            console.log(e.timeCurrent);
+            console.log(e.timeTotal);
+        });
+
+
+        setTimeout(function(){
+           
+             //$("#player").pause(); 
+            $("#player").currentTime(30); 
+            
+         }, 1000 * 5)
+         
+         setTimeout(function(){
+           
+             $("#player").play(); 
+             
+         }, 1000 * 10)
+
+
+        //
+        //$("#player").pause(); 
+        //$("#player").play();
+        //$("#player").stop();    
+        //$("#player").currentTime(30);
+    </script>
+
+</body>
+
+</html>
